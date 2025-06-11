@@ -1,0 +1,18 @@
+.workspace {
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+:host ::ng-deep {
+  .mat-mdc-tab-labels {
+    .mat-mdc-tab:last-child {
+      &.mat-mdc-tab-disabled {
+        opacity: 1;
+        min-width: auto;
+        padding: 0 10px;
+      }
+    }
+  }
+}

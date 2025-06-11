@@ -1,0 +1,13 @@
+:host {
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+}
+
+.tab-content {
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}

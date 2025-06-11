@@ -1,0 +1,18 @@
+@use "colors";
+
+:host {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  border: 1px solid colors.$gray-0;
+  border-radius: 6px;
+  pointer-events: none;
+  box-sizing: border-box;
+  padding: 0 5px;
+  background-color: colors.$white;
+  &.without-border {
+    border: none;
+    background-color: transparent;
+  }
+}

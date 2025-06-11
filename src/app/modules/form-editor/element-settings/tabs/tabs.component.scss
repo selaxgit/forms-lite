@@ -1,0 +1,19 @@
+@use "colors";
+
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-container {
+  padding: 10px;
+  border: 1px solid colors.$border-color;
+  margin-top: 10px;
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.mt-5 {
+  margin-top: 5px !important;
+}

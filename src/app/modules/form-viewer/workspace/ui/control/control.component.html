@@ -1,0 +1,113 @@
+@switch (elementInfo.controlType) {
+  @case (controlTypeEnum.Checkbox) {
+    <jst-checkbox [label]="elementInfo.label" [formControl]="$any(controlElement?.control)">
+      @if (elementInfo.controlProperties?.usePrefix) {
+        <ng-container JSTIconPrefix>
+          <mat-icon [matTooltip]="elementInfo.controlProperties?.prefixHint ?? null">{{
+            elementInfo.controlProperties?.prefixIcon
+          }}</mat-icon>
+        </ng-container>
+      }
+      @if (elementInfo.controlProperties?.useSuffix) {
+        <ng-container JSTIconSuffix>
+          <mat-icon [matTooltip]="elementInfo.controlProperties?.suffixHint ?? null">{{
+            elementInfo.controlProperties?.suffixIcon
+          }}</mat-icon>
+        </ng-container>
+      }
+    </jst-checkbox>
+  }
+  @case (controlTypeEnum.Datetime) {
+    <jst-datepicker
+      [label]="elementInfo.label"
+      [clearButton]="elementInfo.controlProperties?.clearButton ?? false"
+      [formControl]="$any(controlElement?.control)"
+    >
+      @if (elementInfo.controlProperties?.usePrefix) {
+        <ng-container JSTIconPrefix>
+          <mat-icon [matTooltip]="elementInfo.controlProperties?.prefixHint ?? null">{{
+            elementInfo.controlProperties?.prefixIcon
+          }}</mat-icon>
+        </ng-container>
+      }
+      @if (elementInfo.controlProperties?.useSuffix) {
+        <ng-container JSTIconSuffix>
+          <mat-icon [matTooltip]="elementInfo.controlProperties?.suffixHint ?? null">{{
+            elementInfo.controlProperties?.suffixIcon
+          }}</mat-icon>
+        </ng-container>
+      }
+    </jst-datepicker>
+  }
+  @case (controlTypeEnum.List) {
+    <jst-select
+      [label]="elementInfo.label"
+      [clearButton]="elementInfo.controlProperties?.clearButton ?? false"
+      [formControl]="$any(controlElement?.control)"
+      [options]="$any(controlElement?.dataSourceList() ?? [])"
+    >
+      @if (elementInfo.controlProperties?.usePrefix) {
+        <ng-container JSTIconPrefix>
+          <mat-icon [matTooltip]="elementInfo.controlProperties?.prefixHint ?? null">{{
+            elementInfo.controlProperties?.prefixIcon
+          }}</mat-icon>
+        </ng-container>
+      }
+      @if (elementInfo.controlProperties?.useSuffix) {
+        <ng-container JSTIconSuffix>
+          <mat-icon [matTooltip]="elementInfo.controlProperties?.suffixHint ?? null">{{
+            elementInfo.controlProperties?.suffixIcon
+          }}</mat-icon>
+        </ng-container>
+      }
+    </jst-select>
+  }
+  @case (controlTypeEnum.Number) {
+    <jst-touchspin
+      [label]="elementInfo.label"
+      [clearButton]="elementInfo.controlProperties?.clearButton ?? false"
+      [formControl]="$any(controlElement?.control)"
+    >
+      @if (elementInfo.controlProperties?.usePrefix) {
+        <ng-container JSTIconPrefix>
+          <mat-icon [matTooltip]="elementInfo.controlProperties?.prefixHint ?? null">{{
+            elementInfo.controlProperties?.prefixIcon
+          }}</mat-icon>
+        </ng-container>
+      }
+      @if (elementInfo.controlProperties?.useSuffix) {
+        <ng-container JSTIconSuffix>
+          <mat-icon [matTooltip]="elementInfo.controlProperties?.suffixHint ?? null">{{
+            elementInfo.controlProperties?.suffixIcon
+          }}</mat-icon>
+        </ng-container>
+      }
+    </jst-touchspin>
+  }
+  @case (controlTypeEnum.Text) {
+    <jst-input
+      [label]="elementInfo.label"
+      [clearButton]="elementInfo.controlProperties?.clearButton ?? false"
+      [textarea]="elementInfo.controlProperties?.controlSubType === controlSubTypeEnum.Textarea"
+      [formControl]="$any(controlElement?.control)"
+    >
+      @if (elementInfo.controlProperties?.usePrefix) {
+        <ng-container JSTIconPrefix>
+          <mat-icon [matTooltip]="elementInfo.controlProperties?.prefixHint ?? null">{{
+            elementInfo.controlProperties?.prefixIcon
+          }}</mat-icon>
+        </ng-container>
+      }
+      @if (elementInfo.controlProperties?.useSuffix) {
+        <ng-container JSTIconSuffix>
+          <mat-icon [matTooltip]="elementInfo.controlProperties?.suffixHint ?? null">{{
+            elementInfo.controlProperties?.suffixIcon
+          }}</mat-icon>
+        </ng-container>
+      }
+    </jst-input>
+  }
+  @default {
+    <div class="text-danger">Неизвестный контрол</div>
+  }
+}

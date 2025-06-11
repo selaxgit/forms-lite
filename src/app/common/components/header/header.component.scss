@@ -1,0 +1,17 @@
+@use "colors";
+
+:host {
+  display: flex;
+  align-items: center;
+  padding: 5px 16px;
+  background-color: colors.$body-bg;
+  border-bottom: 2px solid colors.$white;
+}
+
+.logo {
+  margin-right: 20px;
+  cursor: pointer;
+  img {
+    height: 36px;
+  }
+}

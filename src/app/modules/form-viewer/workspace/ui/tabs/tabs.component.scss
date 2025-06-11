@@ -1,0 +1,11 @@
+:host {
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+:host ::ng-deep {
+  .mat-mdc-tab-body-content {
+    padding-top: 10px;
+  }
+}

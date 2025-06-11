@@ -1,0 +1,14 @@
+<fieldset class="flex-auto flex-col">
+  <legend>Привязка ответа</legend>
+  <div class="flex-row mt-10">
+    <div class="flex-auto">
+      <jst-input label="Свойство со списком" [disabledState]="disabledState" [(value)]="bindResponse.root"></jst-input>
+    </div>
+    <div class="flex-auto ml-10">
+      <jst-input label="Привязка значения" [disabledState]="disabledState" [(value)]="bindResponse.value"></jst-input>
+    </div>
+    <div class="flex-auto ml-10">
+      <jst-input label="Привязка заголовка" [disabledState]="disabledState" [(value)]="bindResponse.title"></jst-input>
+    </div>
+  </div>
+</fieldset>

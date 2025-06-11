@@ -1,0 +1,30 @@
+<div
+  class="drop-element-container drop-element-right"
+  [ufDrop]="{ mode: 'element', type: 'after', idx, parentGuid: rowGuid }"
+></div>
+<div
+  class="drop-element-container drop-element-left"
+  [ufDrop]="{ mode: 'element', type: 'before', idx, parentGuid: rowGuid }"
+></div>
+
+@if (type === controlTypeEnum.Number) {
+  <mat-icon>remove</mat-icon>
+}
+@if (type === controlTypeEnum.Checkbox) {
+  <mat-icon>check_box_outline_blank</mat-icon>
+}
+<div class="flex-auto ml-10">
+  {{ label }}
+</div>
+@if (type === controlTypeEnum.Number) {
+  <mat-icon>add</mat-icon>
+}
+@if (type === controlTypeEnum.List) {
+  <mat-icon>arrow_drop_down</mat-icon>
+}
+@if (clearButton && type !== controlTypeEnum.Checkbox) {
+  <mat-icon>close</mat-icon>
+}
+@if (type === controlTypeEnum.Datetime) {
+  <mat-icon>date_range</mat-icon>
+}

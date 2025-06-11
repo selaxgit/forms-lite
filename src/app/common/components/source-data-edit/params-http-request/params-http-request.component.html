@@ -1,0 +1,16 @@
+<div class="mb-10">
+  <jst-input label="URL для API" [disabledState]="disabledState" [(value)]="request.apiUrl"></jst-input>
+</div>
+<div class="flex-row mt-10">
+  <div>
+    <jst-select
+      label="Метод HTTP"
+      [options]="methodHttpList"
+      [disabledState]="disabledState"
+      [(value)]="request.methodHttp"
+    ></jst-select>
+  </div>
+  <div class="flex-auto ml-10">
+    <jst-input label="Метод API" [disabledState]="disabledState" [(value)]="request.methodApi"></jst-input>
+  </div>
+</div>

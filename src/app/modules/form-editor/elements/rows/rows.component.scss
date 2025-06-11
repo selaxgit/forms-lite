@@ -1,0 +1,17 @@
+@use "colors";
+
+:host {
+  position: relative;
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+  border: 1px dotted transparent;
+  box-sizing: border-box;
+}
+
+.form-row {
+  margin-top: 10px;
+  &:first-child {
+    margin-top: 0;
+  }
+}

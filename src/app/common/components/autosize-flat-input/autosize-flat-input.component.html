@@ -1,0 +1,12 @@
+<input
+  #nameInput
+  [size]="control.value.length || 1"
+  [formControl]="control"
+  (blur)="onInputBlur()"
+  (focus)="onInputFocus()"
+  (keyup.enter)="onInputBlur()"
+  (keyup.escape)="onInputBlur(true)"
+/>
+@if (visibleIconNameEdit()) {
+  <mat-icon class="ml-10">edit</mat-icon>
+}

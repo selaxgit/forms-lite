@@ -1,0 +1,55 @@
+<div class="flex-row">
+  <div>
+    <jst-input
+      class="mat-without-hint"
+      label="Идентификатор"
+      [disabledState]="element.type === elementTypeEnum.Tabs"
+      [(value)]="element.id"
+    ></jst-input>
+  </div>
+  <div class="flex-auto ml-10">
+    <jst-input class="mat-without-hint" label="Заголовок элемента" [(value)]="element.label"></jst-input>
+  </div>
+</div>
+
+<fieldset class="mt-10">
+  <legend>Настройка ширины элемента</legend>
+  <div class="flex-row-align-center">
+    <div class="flex-auto">
+      <jst-checkbox label="Все свободное пространство" [(value)]="element.autofill"></jst-checkbox>
+    </div>
+    <div class="width-container">
+      <jst-touchspin
+        class="mat-without-hint"
+        label="Ширина"
+        [disabledState]="element.autofill"
+        [(value)]="element.width"
+      ></jst-touchspin>
+    </div>
+    <div class="unit-container">
+      <jst-select
+        class="mat-without-hint"
+        label="Единицы измерения"
+        [disabledState]="element.autofill"
+        [options]="widthUnitList"
+        [(value)]="element.widthUnit"
+      ></jst-select>
+    </div>
+  </div>
+</fieldset>
+
+<div class="mt-10">
+  <true-false-cond
+    label="Видимость элемента"
+    trueTitle="Видимый"
+    falseTitle="Невидимый"
+    [(value)]="element.visible"
+  ></true-false-cond>
+  <true-false-cond
+    class="mt-10"
+    label="Деактивация элемента"
+    trueTitle="Включено"
+    falseTitle="Выключено"
+    [(value)]="element.disabled"
+  ></true-false-cond>
+</div>

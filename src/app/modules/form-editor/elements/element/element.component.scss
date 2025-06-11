@@ -1,0 +1,105 @@
+@use "colors";
+
+:host {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  &.autofill {
+    flex: auto;
+  }
+  &.not-visible {
+    opacity: 0.1;
+  }
+  &.disabled {
+    opacity: 0.3;
+  }
+  &.as-textarea {
+    height: 96px;
+  }
+}
+
+:host:hover > .menu-element-container {
+  display: flex;
+}
+:host:hover > .menu-panel-container {
+  display: flex;
+}
+
+.menu-element-container {
+  display: none;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  flex-direction: column;
+  z-index: 1;
+  &::after {
+    display: block;
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 34px;
+    right: 0;
+    bottom: 0;
+    border-radius: 6px;
+    background-color: colors.$blue;
+    pointer-events: none;
+  }
+}
+
+.element-drag-handle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  background-color: colors.$white;
+}
+
+.menu-panel-container {
+  --mat-button-text-container-height: 22px;
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 22px;
+  flex-direction: column;
+  z-index: 1;
+  &::after {
+    display: block;
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 28px;
+    right: 0;
+    bottom: 0;
+    border-radius: 6px;
+    background-color: colors.$blue;
+    pointer-events: none;
+  }
+  .element-drag-handle-container {
+    .mat-icon {
+      height: 20px;
+      width: 20px;
+      font-size: 19px;
+    }
+  }
+}
+
+.width-100-percent {
+  width: 100%;
+}
+
+.menu-settings-title {
+  font-weight: bold;
+  font-size: 12px;
+  text-align: center;
+  border-bottom: 1px solid colors.$gray-200;
+  padding: 0 10px;
+}
+
+.pointer-events-all {
+  pointer-events: all;
+}

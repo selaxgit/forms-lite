@@ -1,0 +1,63 @@
+@if (currentFormStore.is404Form()) {
+  <app-page-not-found></app-page-not-found>
+} @else {
+  @if (currentFormStore.isLoadingState()) {
+    <div class="loading-container">
+      <mat-spinner></mat-spinner>
+      <div class="loading-container__message">Подождите, пожалуйста...</div>
+    </div>
+  }
+  <common-header>
+    <div class="flex-auto flex-row-align-center">
+      <div class="text-weight-500">Наименование формы:</div>
+      <div class="name-text">
+        {{ currentFormStore.currentFormName }}
+      </div>
+    </div>
+    @if (currentFormStore.hasChangedForm()) {
+      <button class="mr-10" matButton color="success" (click)="onSaveForm()">
+        <mat-icon>save</mat-icon>
+        <span>Сохранить</span>
+      </button>
+    }
+    <button matButton color="primary" (click)="onEditForm()">
+      <mat-icon>visibility</mat-icon>
+      <span>Редактировать форму</span>
+    </button>
+    <button class="ml-10" matButton color="primary" (click)="onDownloadForm()">
+      <mat-icon>download</mat-icon>
+      <span>Скачать JSON формы</span>
+    </button>
+    <button class="ml-10" matButton color="primary" [matMenuTriggerFor]="menuDtoList">
+      <div class="flex-row-align-center">
+        <mat-icon>data_object</mat-icon>
+        <span>&nbsp;Выберите DTO</span>
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </div>
+    </button>
+    <button class="ml-10" matButton color="primary" [disabled]="!currentDto()" (click)="showCurrentDto()">
+      <mat-icon>data_object</mat-icon>
+      <span>Результат DTO</span>
+    </button>
+  </common-header>
+  <div class="scroll-container">
+    <div class="scroll">
+      <fv-workspace [rows]="currentFormStore.currentFormRows()" [dto]="currentDto()"></fv-workspace>
+    </div>
+  </div>
+}
+
+<mat-menu #menuDtoList="matMenu">
+  @for (dto of dtoStore.dtoList$ | async; track dto.id) {
+    <button mat-menu-item (click)="onSetDto(dto)">
+      <div class="flex-row-align-center">
+        <span class="flex-auto">{{ dto.name }}&nbsp;</span>
+        @if (dto.id === currentDto()?.id) {
+          <mat-icon>check</mat-icon>
+        }
+      </div>
+    </button>
+  } @empty {
+    <button mat-menu-item disabled>Нет доступных DTO</button>
+  }
+</mat-menu>

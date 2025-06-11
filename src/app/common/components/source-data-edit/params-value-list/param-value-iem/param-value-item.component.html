@@ -1,0 +1,11 @@
+<div class="flex-auto">
+  <jst-input [label]="titleParam" [disabledState]="disabledState" [(value)]="paramNameValue"></jst-input>
+</div>
+<div class="flex-auto ml-10">
+  <jst-input [label]="titleValue" [disabledState]="disabledState" [(value)]="paramValueValue"></jst-input>
+</div>
+@if (!disabledState) {
+  <button class="ml-10" mat-icon-button color="accent" (click)="onRemove()">
+    <mat-icon>cancel</mat-icon>
+  </button>
+}

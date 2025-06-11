@@ -1,0 +1,66 @@
+<panel-container
+  class="flex-auto"
+  [title]="title"
+  [applyButtonTitle]="applyButtonTitle"
+  (closeEvent)="onClosePanel()"
+  (applyEvent)="onApply()"
+>
+  <div class="flex-items-center mt-10 mb-10">
+    <div>
+      <jst-select
+        label="Тип источника данных"
+        [options]="sourceTypesList"
+        [disabledState]="hasAvaialbleSource()"
+        [(value)]="sourceType"
+      ></jst-select>
+    </div>
+    <div class="flex-auto ml-10">
+      @if (editSourceAsValue) {
+        <jst-select
+          label="Доступные источники данных"
+          [options]="avaialbleSourcesList"
+          [value]="avaialbleSource()"
+          (valueChange)="setAvaialbleSource($event)"
+        ></jst-select>
+      } @else {
+        <jst-input
+          label="Наименование источника данных"
+          [controlRequred]="true"
+          [formControl]="controlName"
+        ></jst-input>
+      }
+    </div>
+    <button
+      class="ml-10"
+      matIconButton
+      color="primary"
+      title="Сохранить как шаблон"
+      [disabled]="hasAvaialbleSource()"
+      (click)="onSaveAsTemplate()"
+    >
+      <mat-icon>save_as</mat-icon>
+    </button>
+  </div>
+  @if (isHttpRequest()) {
+    <params-http-request
+      class="mt-10 mb-10"
+      [request]="sourceHttpRequest"
+      [disabledState]="hasAvaialbleSource()"
+    ></params-http-request>
+  }
+  <params-value-list
+    class="flex-auto"
+    [params]="paramsList"
+    [titleAddButton]="paramsTitleAddButton"
+    [titleList]="paramsTitleList"
+    [titleParam]="paramItemTitle"
+    [disabledState]="hasAvaialbleSource()"
+  ></params-value-list>
+  @if (isHttpRequest()) {
+    <bind-response
+      class="mt-10 mb-10"
+      [bindResponse]="sourceHttpRequest.bindResponse"
+      [disabledState]="hasAvaialbleSource()"
+    ></bind-response>
+  }
+</panel-container>

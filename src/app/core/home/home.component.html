@@ -1,0 +1,24 @@
+<common-header></common-header>
+<div class="info-container">
+  <div class="flex-auto flex-row-align-center">
+    <mat-icon color="warning">report_problem</mat-icon>
+    <span class="ml-10">
+      Данные сохраняются в локальной БД. Для переноса между приложениями используйте экспорт/импорт
+    </span>
+  </div>
+  <button matButton color="warn" (click)="onImportDemo()">
+    <mat-icon>star</mat-icon>
+    Загрузить ДЕМО данные
+  </button>
+</div>
+<forms-list class="flex-auto"></forms-list>
+<div class="flex-col flex-auto">
+  <div class="flex-row flex-auto">
+    <div class="flex-col w-50-percent">
+      <source-data-list class="flex-auto"></source-data-list>
+    </div>
+    <div class="flex-col w-50-percent">
+      <dto-list class="flex-auto"></dto-list>
+    </div>
+  </div>
+</div>

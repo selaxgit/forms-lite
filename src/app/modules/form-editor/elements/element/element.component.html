@@ -1,0 +1,143 @@
+@switch (type) {
+  @case (elementTypeEnum.Control) {
+    <form-control
+      #controlRef
+      class="flex-auto"
+      [idx]="idx"
+      [rowGuid]="rowGuid"
+      [guid]="guid"
+      [type]="controlType"
+      [element]="element"
+      [label]="label"
+      [clearButton]="clearButton"
+    ></form-control>
+    <div class="menu-element-container">
+      <div class="flex-row flex-auto">
+        <div class="element-drag-handle-container">
+          <mat-icon
+            class="cursor-move color-blue"
+            title="Перетащить контрол"
+            [ufDrag]="controlRef"
+            [dragInfo]="{ type: 'element', idx, parentGuid: rowGuid }"
+          >
+            open_with
+          </mat-icon>
+        </div>
+        <div class="flex-col flex-auto">
+          <button
+            class="width-100-percent flex-auto"
+            matButton
+            title="Действия для контрола"
+            [matMenuTriggerFor]="menuSettingsElement"
+          >
+            <mat-icon class="color-white">settings</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+  @case (elementTypeEnum.Panel) {
+    <form-panel #panelRef class="flex-auto" [guid]="guid" [children]="children ?? []" [label]="label"></form-panel>
+    <div class="menu-panel-container">
+      <div class="flex-row flex-auto">
+        <div class="element-drag-handle-container">
+          <mat-icon
+            class="cursor-move color-blue"
+            title="Перетащить панель"
+            [ufDrag]="panelRef"
+            [dragInfo]="{ type: 'element', idx, parentGuid: rowGuid }"
+          >
+            open_with
+          </mat-icon>
+        </div>
+        <div class="flex-col flex-auto">
+          <button
+            class="width-100-percent"
+            matButton
+            title="Действия для панели"
+            [matMenuTriggerFor]="menuSettingsElement"
+          >
+            <mat-icon class="color-white">settings</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+  @case (elementTypeEnum.Tabs) {
+    <form-tabs #tabsRef class="flex-auto" [guid]="guid" [children]="children ?? []">
+      <mat-icon
+        class="cursor-move color-blue pointer-events-all"
+        title="Перетащить вкладки"
+        [ufDrag]="tabsRef"
+        [dragInfo]="{ type: 'element', idx, parentGuid: rowGuid }"
+      >
+        open_with
+      </mat-icon>
+      <button
+        class="pointer-events-all"
+        mat-icon-button
+        color="primary"
+        title="Действия для вкладок"
+        [matMenuTriggerFor]="menuSettingsElement"
+      >
+        <mat-icon>settings</mat-icon>
+      </button>
+    </form-tabs>
+  }
+  @default {
+    <div class="text-danger">Неизвестный элемент</div>
+  }
+}
+
+<mat-menu #menuSettingsElement="matMenu">
+  <div class="menu-settings-title">{{ getTitleMenuByElement() }}</div>
+  <button mat-menu-item (click)="onRunCommand('toggle-autofill')">
+    @if (autofill) {
+      <mat-icon class="rotate-90">compress</mat-icon>
+    } @else {
+      <mat-icon class="rotate-90">expand</mat-icon>
+    }
+    <span>Переключение автоширины элемента</span>
+  </button>
+  @if (type === elementTypeEnum.Control) {
+    @if (controlType !== controlTypeEnum.Checkbox) {
+      <button mat-menu-item (click)="onRunCommand('toggle-clear-button')">
+        @if (element.controlProperties?.clearButton) {
+          <mat-icon>disabled_visible</mat-icon>
+        } @else {
+          <mat-icon>block</mat-icon>
+        }
+        <span>Скрыть/показать кнопку очистки</span>
+      </button>
+    }
+  }
+  @if (type === elementTypeEnum.Tabs) {
+    <button mat-menu-item (click)="onRunCommand('add-tab')">
+      <mat-icon>add</mat-icon>
+      <span>Добавить вкладку</span>
+    </button>
+  }
+  <button mat-menu-item [matMenuTriggerFor]="menuAddElement.menu" [matMenuTriggerData]="{ position: 'LEFT' }">
+    <mat-icon class="rotate-180">start</mat-icon>
+    <span>Добавить элемент слева</span>
+  </button>
+  <button mat-menu-item [matMenuTriggerFor]="menuAddElement.menu" [matMenuTriggerData]="{ position: 'RIGHT' }">
+    <mat-icon>start</mat-icon>
+    <span>Добавить элемент справа</span>
+  </button>
+  <mat-divider></mat-divider>
+  <button mat-menu-item (click)="onShowSettings()">
+    <mat-icon>settings</mat-icon>
+    <span>Настройки элемента</span>
+  </button>
+  <mat-divider></mat-divider>
+  <button class="text-danger" mat-menu-item (click)="onRemoveElement()">
+    <mat-icon class="text-danger">delete</mat-icon>
+    <span>Удалить элемент</span>
+  </button>
+</mat-menu>
+
+<menu-add-element
+  #menuAddElement
+  (addElementEvent)="onAddElement($event.position, $any($event).typeElement)"
+></menu-add-element>

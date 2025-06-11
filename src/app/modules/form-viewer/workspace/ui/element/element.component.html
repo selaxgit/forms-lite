@@ -1,0 +1,14 @@
+@switch (elementInfo.type) {
+  @case (elementTypeEnum.Tabs) {
+    <ui-tabs [element]="elementInfo"></ui-tabs>
+  }
+  @case (elementTypeEnum.Panel) {
+    <ui-panel [element]="elementInfo"></ui-panel>
+  }
+  @case (elementTypeEnum.Control) {
+    <ui-control [element]="elementInfo"></ui-control>
+  }
+  @default {
+    <div class="text-danger">Неизвестный элемент</div>
+  }
+}

@@ -1,0 +1,192 @@
+<div class="flex-row">
+  <div class="flex-auto">
+    <jst-select
+      class="mat-without-hint"
+      label="Тип контрола"
+      [options]="controlTypesList"
+      [(value)]="element.controlType"
+      (changeEvent)="onChangeControlType()"
+    ></jst-select>
+  </div>
+  <div class="flex-auto ml-10">
+    <jst-select
+      class="mat-without-hint"
+      label="Подтип контрола"
+      [disabledState]="disabledSubType()"
+      [clearButton]="true"
+      [options]="subTypesList()"
+      [(value)]="controlSubType"
+    ></jst-select>
+  </div>
+</div>
+@if (element.controlProperties) {
+  <div class="mt-16">
+    <input-bind-dto
+      class="mat-without-hint"
+      label="Привязка к DTO"
+      [clearButton]="true"
+      [(value)]="element.controlProperties.bindDTO"
+    ></input-bind-dto>
+  </div>
+
+  <true-false-cond
+    label="Только для чтения"
+    trueTitle="Только для чтения"
+    falseTitle="Отключено"
+    [(value)]="element.controlProperties.readonly"
+  ></true-false-cond>
+  <true-false-cond
+    label="Обязательность заполнения"
+    trueTitle="Обязательно"
+    falseTitle="Отключено"
+    [(value)]="element.controlProperties.required"
+  ></true-false-cond>
+
+  <div class="mt-10">
+    <jst-checkbox
+      label="Скрыть/показать кнопку очистки контрола"
+      [(value)]="element.controlProperties.clearButton"
+    ></jst-checkbox>
+  </div>
+  <div class="mt-10 flex-row-align-center">
+    <div class="nowrap">
+      <jst-checkbox label="Использовать префикс" [(value)]="element.controlProperties.usePrefix"></jst-checkbox>
+    </div>
+    <div class="flex-auto ml-10">
+      <jst-input
+        class="mat-without-hint"
+        label="Иконка префикса"
+        [clearButton]="true"
+        [disabledState]="!element.controlProperties.usePrefix"
+        [(value)]="element.controlProperties.prefixIcon"
+      >
+        <ng-container JSTIconSuffix>
+          <a href="https://fonts.google.com/icons" target="=_blank">
+            <mat-icon>open_in_new</mat-icon>
+          </a>
+        </ng-container>
+      </jst-input>
+    </div>
+    <div class="flex-auto ml-10">
+      <jst-input
+        class="mat-without-hint"
+        label="Хинт префикса"
+        [disabledState]="!element.controlProperties.usePrefix"
+        [clearButton]="true"
+        [(value)]="element.controlProperties.prefixHint"
+      ></jst-input>
+    </div>
+  </div>
+  <div class="mt-10 flex-row-align-center">
+    <div class="nowrap">
+      <jst-checkbox label="Использовать суффикс" [(value)]="element.controlProperties.useSuffix"></jst-checkbox>
+    </div>
+    <div class="flex-auto ml-10">
+      <jst-input
+        class="mat-without-hint"
+        label="Иконка суффикса"
+        [clearButton]="true"
+        [disabledState]="!element.controlProperties.useSuffix"
+        [(value)]="element.controlProperties.suffixIcon"
+      >
+        <ng-container JSTIconSuffix>
+          <a href="https://fonts.google.com/icons" target="=_blank">
+            <mat-icon>open_in_new</mat-icon>
+          </a>
+        </ng-container>
+      </jst-input>
+    </div>
+    <div class="flex-auto ml-10">
+      <jst-input
+        class="mat-without-hint"
+        label="Хинт суффикса"
+        [disabledState]="!element.controlProperties.useSuffix"
+        [clearButton]="true"
+        [(value)]="element.controlProperties.suffixHint"
+      ></jst-input>
+    </div>
+  </div>
+  @switch (element.controlType) {
+    @case (controlTypeEnum.Text) {
+      <div class="mt-10">
+        <jst-select
+          class="mat-without-hint"
+          label="Маска ввода"
+          [clearButton]="true"
+          [options]="maskTypeList"
+          [(value)]="element.controlProperties.maskType"
+        ></jst-select>
+      </div>
+      <div class="mt-16">
+        <jst-input
+          class="mat-without-hint"
+          label="Укажите маску вручню"
+          [clearButton]="true"
+          [disabledState]="isDisabledCutomMask"
+          [(value)]="element.controlProperties.maskValue"
+        ></jst-input>
+      </div>
+    }
+    @case (controlTypeEnum.List) {
+      <div class="mt-10">
+        <input-data-source [(dataSource)]="$any(element.controlProperties.dataSource)"></input-data-source>
+      </div>
+    }
+    @case (controlTypeEnum.Number) {
+      <div class="mt-10 flex-row-align-center">
+        <div class="minmax-container">
+          <jst-touchspin
+            class="mat-without-hint"
+            label="Минимальное значение"
+            [(value)]="element.controlProperties.min"
+          ></jst-touchspin>
+        </div>
+        <div class="minmax-container ml-10">
+          <jst-touchspin
+            class="mat-without-hint"
+            label="Максимальное значение"
+            [(value)]="element.controlProperties.max"
+          ></jst-touchspin>
+        </div>
+        <div class="step-container ml-10">
+          <jst-touchspin
+            class="mat-without-hint"
+            label="Шаг"
+            [(value)]="element.controlProperties.step"
+          ></jst-touchspin>
+        </div>
+      </div>
+      <div class="mt-10 flex-row-align-center">
+        <div class="nowrap">
+          <jst-checkbox label="Дробное значение" [(value)]="element.controlProperties.allowDecimals"></jst-checkbox>
+        </div>
+        <div class="decimal-container ml-10">
+          <jst-touchspin
+            class="mat-without-hint"
+            label="Кол-во чисел после запятой"
+            [disabledState]="!element.controlProperties.allowDecimals"
+            [(value)]="element.controlProperties.step"
+          ></jst-touchspin>
+        </div>
+      </div>
+    }
+    @case (controlTypeEnum.Datetime) {
+      <div class="mt-10 flex-row-align-center">
+        <div class="minmax-container">
+          <jst-datepicker
+            class="mat-without-hint"
+            label="Минимальная дата"
+            [(value)]="element.controlProperties.min"
+          ></jst-datepicker>
+        </div>
+        <div class="minmax-container ml-10">
+          <jst-datepicker
+            class="mat-without-hint"
+            label="Максимальная дата"
+            [(value)]="element.controlProperties.max"
+          ></jst-datepicker>
+        </div>
+      </div>
+    }
+  }
+}

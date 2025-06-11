@@ -1,0 +1,25 @@
+@use "colors";
+
+:host {
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: colors.$gray-200;
+}
+
+.info-container {
+  display: flex;
+  align-items: center;
+  margin: 10px 10px 0 10px;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow:
+    rgba(0, 0, 0, 0.2) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0.14) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0.12) 0px 0px 0px 0px;
+  background-color: colors.$white;
+}
+
+.w-50-percent {
+  width: 50%;
+}

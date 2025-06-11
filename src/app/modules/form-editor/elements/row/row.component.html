@@ -1,0 +1,76 @@
+<div class="drop-row-container drop-row-top" [ufDrop]="{ mode: 'row', type: 'insert', idx, parentGuid }"></div>
+
+@for (child of children; track child.guid; let idx = $index) {
+  <form-element
+    [guid]="child.guid"
+    [rowGuid]="guid"
+    [idx]="idx"
+    [element]="child"
+    [type]="child.type"
+    [autofill]="child.autofill"
+    [controlType]="child.controlType ?? null"
+    [label]="child.label"
+    [children]="child.children"
+    [clearButton]="child.controlProperties?.clearButton ?? false"
+  ></form-element>
+}
+
+<div class="menu-container">
+  <mat-icon
+    class="cursor-move"
+    title="Перетащить строку"
+    [ufDrag]="hostComponent"
+    [dragInfo]="{ type: 'row', idx, parentGuid }"
+  >
+    open_with
+  </mat-icon>
+  <button
+    class="mat-small-button-icon"
+    mat-icon-button
+    color="primary"
+    title="Действия для строки"
+    [matMenuTriggerFor]="menuSettingsRow"
+  >
+    <mat-icon>settings</mat-icon>
+  </button>
+</div>
+
+<mat-menu #menuSettingsRow="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="menuVerticalAlign">
+    <mat-icon>align_vertical_center</mat-icon>
+    <span>Вертикальное выравнивание</span>
+  </button>
+  <button mat-menu-item [matMenuTriggerFor]="menuAddElement.menu" [matMenuTriggerData]="{ position: 'BEFORE' }">
+    <mat-icon class="rotate-270">start</mat-icon>
+    <span>Добавить строку до</span>
+  </button>
+  <button mat-menu-item [matMenuTriggerFor]="menuAddElement.menu" [matMenuTriggerData]="{ position: 'AFTER' }">
+    <mat-icon class="rotate-90">start</mat-icon>
+    <span>Добавить строку после</span>
+  </button>
+  <mat-divider></mat-divider>
+  <button class="text-danger" mat-menu-item (click)="onRemoveRow()">
+    <mat-icon class="text-danger">delete</mat-icon>
+    <span>Удалить строку</span>
+  </button>
+</mat-menu>
+
+<mat-menu #menuVerticalAlign="matMenu">
+  <button mat-menu-item (click)="onSetVerticalAlign(verticalAlignEnum.Top)">
+    <mat-icon>align_vertical_top</mat-icon>
+    <span>Сверху</span>
+  </button>
+  <button mat-menu-item (click)="onSetVerticalAlign(verticalAlignEnum.Middle)">
+    <mat-icon>align_vertical_center</mat-icon>
+    <span>По середине</span>
+  </button>
+  <button mat-menu-item (click)="onSetVerticalAlign(verticalAlignEnum.Bottom)">
+    <mat-icon>align_vertical_bottom</mat-icon>
+    <span>Снизу</span>
+  </button>
+</mat-menu>
+
+<menu-add-element
+  #menuAddElement
+  (addElementEvent)="onAddRow($event.position, $any($event).typeElement)"
+></menu-add-element>

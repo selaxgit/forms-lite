@@ -1,0 +1,35 @@
+@use "colors";
+
+:host {
+  position: relative;
+  display: flex;
+
+  box-sizing: border-box;
+  border: 1px dotted transparent;
+  min-height: 36px;
+  padding-top: 10px;
+  &:hover {
+    border-color: rgba(0, 0, 0, 0.7);
+  }
+}
+
+:host:hover:not(.no-menu-container) > .menu-container {
+  display: flex;
+}
+
+:host > *:not(:first-child):not(:last-child) {
+  margin-left: 12px;
+}
+
+.menu-container {
+  display: none;
+  position: absolute;
+  align-items: center;
+  left: -12px;
+  top: -12px;
+  width: 48px;
+  height: 24px;
+  margin-left: 0 !important;
+  z-index: 2;
+  color: colors.$blue;
+}

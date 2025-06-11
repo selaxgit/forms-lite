@@ -1,0 +1,60 @@
+<mat-card class="flex-auto with-header-line" appearance="outlined">
+  <mat-card-header class="with-buttons">
+    <mat-card-title>Шаблоны источников данных</mat-card-title>
+    <button mat-button color="primary" (click)="onAddSourceData()">
+      <mat-icon>add</mat-icon>
+      <span>Создать</span>
+    </button>
+    <button mat-button color="primary" (click)="onImportSourceData()">
+      <mat-icon>upload</mat-icon>
+      <span>Импортировать</span>
+    </button>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="scroll-container">
+      <div class="scroll flex-col">
+        @for (dataSource of sourceDataStore.sourcesList$ | async; track dataSource.id) {
+          <div class="card-list-item" (dblclick)="onEditSourceData(dataSource)">
+            <div class="card-list-item-name">
+              #{{ dataSource.id }}
+              <strong>{{ dataSource.type === 'request' ? 'Запрос:' : 'Список:' }}</strong>
+              {{ dataSource.name }}
+            </div>
+            <button
+              mat-icon-button
+              color="primary"
+              title="Редактировать источник данных"
+              (click)="onEditSourceData(dataSource)"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              color="primary"
+              title="Скачать JSON источника данных"
+              (click)="onExportSourceData(dataSource)"
+            >
+              <mat-icon>download</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              color="accent"
+              title="Удалить источник данных"
+              (click)="onRemoveSourceData(dataSource)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        } @empty {
+          <div class="empty-message">Нет данных</div>
+        }
+      </div>
+    </div>
+    @if (sourceDataStore.isLoadingState()) {
+      <div class="loading-container">
+        <mat-spinner></mat-spinner>
+        <div class="loading-container__message">Подождите, пожалуйста...</div>
+      </div>
+    }
+  </mat-card-content>
+</mat-card>

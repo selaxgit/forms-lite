@@ -1,0 +1,53 @@
+<panel-container class="flex-auto" [title]="getSettingsTitle()" (closeEvent)="onClose()" (applyEvent)="onApply()">
+  <mat-tab-group class="flex-auto tabs-panel-container" [(selectedIndex)]="tabIndex">
+    @if (element) {
+      <mat-tab label="Общее">
+        <div class="tab-content">
+          <div class="scroll-container">
+            <div class="scroll">
+              <common-settings [element]="element"></common-settings>
+              <div class="warning-block mt-10">
+                <p>Памятка при задании условий.</p>
+                <ul>
+                  <li>
+                    При использовании DTO параметров необходимо в начале указать $, а в конце должен быть пробел,
+                    например, $fio == 122
+                  </li>
+                  <li>
+                    При использовании идентификаторов необходимо в начале указать ^, а в конце должен быть пробел,
+                    например, ^MyId == 122
+                  </li>
+                  <li>
+                    При использовании констант необходимо в начале указать #, а в конце должен быть пробел, например,
+                    $fio == #PI_VALUE
+                  </li>
+                  <li>Для сравнения использовать ==</li>
+                  <li>Для отрицательного сравнения !=</li>
+                  <li>Объединение условий: & (и) и | (или)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+    }
+    @if (element && element.type === elementTypeEnum.Control) {
+      <mat-tab label="Контрол">
+        <div class="tab-content">
+          <div class="scroll-container">
+            <div class="scroll">
+              <control-settings [element]="element"></control-settings>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+    }
+    @if (element && element.type === elementTypeEnum.Tabs) {
+      <mat-tab label="Вкладки">
+        <div class="tab-content">
+          <tabs-settings class="flex-auto" [element]="element"></tabs-settings>
+        </div>
+      </mat-tab>
+    }
+  </mat-tab-group>
+</panel-container>

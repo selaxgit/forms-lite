@@ -1,0 +1,15 @@
+<panel-container
+  class="flex-auto"
+  applyButtonTitle="Сохранить DTO"
+  [title]="title"
+  (closeEvent)="onClosePanel()"
+  (applyEvent)="onApply()"
+>
+  <div>
+    <jst-input label="Наименование DTO" [formControl]="controlName"></jst-input>
+  </div>
+  <div class="flex-col flex-auto mt-10">
+    <div class="text-bold">Заполните JSON для DTO</div>
+    <div #jsonElement class="flex-auto mt-10"></div>
+  </div>
+</panel-container>

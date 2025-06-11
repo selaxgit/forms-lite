@@ -1,0 +1,28 @@
+@use "roboto-fontface/css/roboto/sass/roboto-fontface" with (
+  $roboto-font-path: "roboto-fontface/fonts"
+);
+@use "material-icons/iconfont/material-icons.scss" with (
+  $material-icons-font-path: "material-icons/iconfont/"
+);
+@use "colors";
+@use "../node_modules/@jst/ui/styles";
+@use "materail";
+@use "helpers";
+@use "elements";
+@use "dragdrop";
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  min-height: 100%;
+  background-color: colors.$body-bg;
+  color: colors.$black;
+}

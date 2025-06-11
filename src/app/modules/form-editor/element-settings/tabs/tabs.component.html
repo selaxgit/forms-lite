@@ -1,0 +1,36 @@
+<div class="flex-justify-end">
+  <button mat-raised-button color="primary" (click)="onAddTab()">Добавить вкладку</button>
+</div>
+<div class="scroll-container mt-10">
+  <div class="scroll">
+    <div
+      class="flex-auto flex-col mt-10"
+      cdkDropList
+      cdkDropListOrientation="vertical"
+      [cdkDropListData]="$any(element).children"
+      (cdkDropListDropped)="onDropListDropped($event)"
+    >
+      @for (tab of element.children; track tab.guid; let idx = $index) {
+        <div class="tab-container" cdkDrag>
+          <div class="flex-row-align-center">
+            <mat-icon class="icon-drag" title="Перетащить вкладку" cdkDragHandle>open_with</mat-icon>
+            <div class="flex-auto ml-10 mt-5">
+              <jst-input class="mat-without-hint" label="Заголовок вкладки" [(value)]="$any(tab).label"></jst-input>
+            </div>
+            <button class="ml-10" mat-icon-button color="accent" title="Удалить вкладку" (click)="onRemoveTab(idx)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+          <true-false-cond
+            label="Видимость вкладки"
+            trueTitle="Видимая"
+            falseTitle="Невидимая"
+            [(value)]="$any(tab).visible"
+          ></true-false-cond>
+        </div>
+      } @empty {
+        <div class="empty-message">Нет вкладок</div>
+      }
+    </div>
+  </div>
+</div>

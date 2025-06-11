@@ -1,0 +1,58 @@
+@use "colors";
+
+.drop-row-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 30px;
+  z-index: 10;
+  pointer-events: none;
+  box-sizing: border-box;
+  &.drop-row-top {
+    top: -3px;
+    border-top: 3px dotted transparent;
+  }
+  &.drop-row-bottom {
+    bottom: -3px;
+    border-bottom: 3px dotted transparent;
+  }
+  &.is-can-drag {
+    border-color: colors.$blue;
+  }
+}
+
+.drop-element-container {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  pointer-events: none;
+  box-sizing: border-box;
+  &.drop-element-right {
+    right: -8.5px;
+    bottom: 0;
+    width: 50px;
+    border-right: 3px dotted transparent;
+  }
+  &.drop-element-left {
+    left: -8.5px;
+    bottom: 0;
+    width: 50px;
+    border-left: 3px dotted transparent;
+  }
+  &.is-can-drag {
+    border-color: colors.$blue;
+  }
+}
+
+body.uf-dragging {
+  .drop-row-container,
+  .drop-element-container {
+    pointer-events: all;
+  }
+  .uf-not-dragging {
+    .drop-row-container,
+    .drop-element-container {
+      pointer-events: none !important;
+    }
+  }
+}

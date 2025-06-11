@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  align-items: center;
+  input {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    font-size: 18px;
+    font-family: monospace;
+    cursor: pointer;
+  }
+}

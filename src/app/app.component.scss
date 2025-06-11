@@ -1,0 +1,14 @@
+@use "colors";
+
+:host {
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.status-bar {
+  padding: 0 10px;
+  line-height: 18px;
+  font-size: 12px;
+  border-top: 1px solid colors.$white;
+}

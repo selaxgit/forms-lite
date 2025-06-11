@@ -1,0 +1,59 @@
+<div class="jst-modal-container">
+  <div class="container">
+    <div class="dto-list">
+      <fieldset class="flex-col flex-auto">
+        <legend>Доступные DTO</legend>
+        <div class="list-container">
+          @if (availableDto.length > 0) {
+            <div class="scroll-container">
+              <div class="scroll">
+                @for (dto of availableDto; track dto.id) {
+                  <div class="list-item" [class.selected]="dto.id === currentDto()?.id" (click)="onChooseDto(dto)">
+                    {{ dto.name }}
+                  </div>
+                }
+              </div>
+            </div>
+          } @else {
+            <div class="empty-message">Нет данных</div>
+          }
+        </div>
+      </fieldset>
+    </div>
+    <div class="flex-col flex-auto ml-10">
+      <fieldset class="flex-col flex-auto">
+        <legend>Свойства DTO</legend>
+        <div class="list-container">
+          @if (availableProps().length > 0) {
+            <div class="scroll-container">
+              <div class="scroll">
+                @for (prop of availableProps(); track prop) {
+                  <div class="list-item" [class.selected]="prop === currentProp()" (click)="onChooseProp(prop)">
+                    {{ prop }}
+                  </div>
+                }
+              </div>
+            </div>
+          } @else {
+            <div class="empty-message">
+              {{ currentDto()?.id ? 'Нет свойств' : 'Выберите DTO' }}
+            </div>
+          }
+        </div>
+      </fieldset>
+    </div>
+  </div>
+  <div class="jst-modal-footer-buttons jst-not-align">
+    <div class="flex-row-align-center">
+      <div class="choice-container">
+        <strong>Выбрано:</strong>
+        &nbsp;
+        <span>{{ currentChoice() ?? '&lsaquo;не выбрано&rsaquo;' }}</span>
+      </div>
+      <div class="ml-10">
+        <button mat-raised-button color="primary" [disabled]="!currentChoice()" (click)="onApply()">Применить</button>
+        <button mat-raised-button color="accent" (click)="onClose()">Закрыть</button>
+      </div>
+    </div>
+  </div>
+</div>

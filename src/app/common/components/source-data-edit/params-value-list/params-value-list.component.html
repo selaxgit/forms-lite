@@ -1,0 +1,28 @@
+<div class="flex-justify-end">
+  <button matButton="outlined" color="primary" [disabled]="disabledState" (click)="onAddParam()">
+    <mat-icon>add</mat-icon>
+    {{ titleAddButton }}
+  </button>
+</div>
+<fieldset class="flex-auto flex-col">
+  <legend>{{ titleList }}</legend>
+  @if (params.length === 0) {
+    <div class="empty-message">Нет данных</div>
+  } @else {
+    <div class="scroll-container">
+      <div class="scroll">
+        @for (param of params; track $index; let idx = $index) {
+          <param-value-item
+            class="mt-10"
+            [titleParam]="titleParam"
+            [titleValue]="titleValue"
+            [disabledState]="disabledState"
+            [(paramName)]="param.title"
+            [(paramValue)]="param.value"
+            (removeEvent)="onRemoveItem(idx)"
+          ></param-value-item>
+        }
+      </div>
+    </div>
+  }
+</fieldset>

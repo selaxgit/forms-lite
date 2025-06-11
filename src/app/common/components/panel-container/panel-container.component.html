@@ -1,0 +1,13 @@
+<div class="head">
+  <div class="head-title">{{ title }}</div>
+  <button mat-icon-button color="accent" (click)="onClosePanel()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div class="content">
+  <ng-content></ng-content>
+</div>
+<div class="footer">
+  <button mat-button color="accent" (click)="onClosePanel()">{{ cancelButtonTitle }}</button>
+  <button class="ml-10" matButton="tonal" color="primary" (click)="onApplyPanel()">{{ applyButtonTitle }}</button>
+</div>

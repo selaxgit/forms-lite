@@ -1,0 +1,20 @@
+<fieldset class="mt-10">
+  <legend>{{ label }}</legend>
+  <div class="flex-row-align-center">
+    <mat-button-toggle-group class="button-toggle" [value]="state()" (valueChange)="onSetState($event)">
+      <mat-button-toggle [value]="false">{{ falseTitle }}</mat-button-toggle>
+      <mat-button-toggle [value]="true">{{ trueTitle }}</mat-button-toggle>
+      <mat-button-toggle value="cond">{{ condTitle }}</mat-button-toggle>
+    </mat-button-toggle-group>
+    <div class="flex-auto ml-10">
+      <jst-input
+        #inputCond
+        class="mat-without-hint"
+        label="Условие"
+        [disabledState]="state() !== 'cond'"
+        [value]="cond()"
+        (valueChange)="onCondChange($event)"
+      ></jst-input>
+    </div>
+  </div>
+</fieldset>

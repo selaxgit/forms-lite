@@ -1,0 +1,7 @@
+<mat-tab-group mat-stretch-tabs="false">
+  @for (tab of element.children; track tab.guid) {
+    <mat-tab [label]="$any(tab).label">
+      <ui-rows [rows]="$any(tab.children)"></ui-rows>
+    </mat-tab>
+  }
+</mat-tab-group>

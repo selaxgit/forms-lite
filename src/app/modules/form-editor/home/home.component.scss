@@ -1,0 +1,46 @@
+@use "colors";
+
+:host {
+  position: relative;
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: colors.$gray-200;
+}
+
+.drawer-container {
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: colors.$gray-200;
+}
+
+mat-drawer-content {
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+mat-drawer {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+}
+
+.drawer-head {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.drawer-head-title {
+  flex: auto;
+  font-size: 22px;
+}
+
+.workspace {
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}

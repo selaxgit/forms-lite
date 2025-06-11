@@ -1,0 +1,41 @@
+@if (currentFormStore.is404Form()) {
+  <app-page-not-found></app-page-not-found>
+} @else {
+  @if (currentFormStore.isLoadingState()) {
+    <div class="loading-container">
+      <mat-spinner></mat-spinner>
+      <div class="loading-container__message">Подождите, пожалуйста...</div>
+    </div>
+  }
+  <common-header>
+    <div class="flex-auto flex-row-align-center">
+      <div class="text-weight-500">Наименование формы:</div>
+      <autosize-flat-input class="ml-10" [(value)]="currentFormStore.currentFormName"></autosize-flat-input>
+    </div>
+    <button mat-button color="primary" (click)="onViewForm()">
+      <mat-icon>visibility</mat-icon>
+      <span>Просмотр формы</span>
+    </button>
+    <button class="ml-10" mat-button color="primary" (click)="onDownloadForm()">
+      <mat-icon>download</mat-icon>
+      <span>Скачать JSON формы</span>
+    </button>
+    <button
+      class="ml-10"
+      mat-button
+      color="success"
+      [disabled]="!currentFormStore.hasChangedForm()"
+      (click)="onSaveForm()"
+    >
+      <mat-icon>save</mat-icon>
+      <span>Сохранить</span>
+    </button>
+  </common-header>
+  <div class="scroll-container">
+    <div class="scroll">
+      <div class="workspace">
+        <form-rows class="flex-auto" [rows]="currentFormStore.currentFormRows()"></form-rows>
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,10 @@
+<mat-card appearance="outlined">
+  @if (element.label) {
+    <mat-card-header>
+      <mat-card-title> {{ element.label }} </mat-card-title>
+    </mat-card-header>
+  }
+  <mat-card-content>
+    <ui-rows [rows]="$any(element.children)"></ui-rows>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,7 @@
+<div
+  class="sliding-panel"
+  [@openClose]="{ value: isOpen ? 'open' : 'closed', params: { width: panelWidth } }"
+  (@openClose.done)="onAnimationDoneEvent($event)"
+>
+  <ng-container #content></ng-container>
+</div>

@@ -1,0 +1,31 @@
+@for (row of rows; track row.guid; let idx = $index) {
+  <form-row
+    class="form-row"
+    [idx]="idx"
+    [guid]="row.guid"
+    [parentGuid]="parentGuid"
+    [children]="row.children"
+    [verticalAlign]="row.verticalAlign"
+  ></form-row>
+} @empty {
+  <div class="flex-col-centered flex-auto p-relative">
+    <div class="drop-row-container drop-row-top" [ufDrop]="{ mode: 'row', type: 'push', idx: -1, parentGuid }"></div>
+    <button
+      mat-button
+      color="primary"
+      [matMenuTriggerFor]="menuAddElement.menu"
+      [matMenuTriggerData]="{ position: 'NONE' }"
+    >
+      <mat-icon>add</mat-icon>
+      <span>Добавить элемент</span>
+    </button>
+  </div>
+}
+@if (rows.length > 0) {
+  <div
+    class="drop-row-container drop-row-bottom"
+    [ufDrop]="{ mode: 'row', type: 'push', idx: rows.length, parentGuid }"
+  ></div>
+}
+
+<menu-add-element #menuAddElement (addElementEvent)="onAddElement($any($event).typeElement)"></menu-add-element>

@@ -1,0 +1,51 @@
+@use "colors";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+}
+
+.container {
+  display: flex;
+  height: 350px;
+  padding: 10px;
+}
+
+.choice-container {
+  flex: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dto-list {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+}
+
+.list-container {
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.list-item {
+  cursor: default;
+  padding: 0 10px;
+  &.selected {
+    background-color: colors.$selected-color;
+    color: colors.$white;
+  }
+  &:hover:not(.selected) {
+    background-color: colors.$hover-color;
+    color: colors.$black;
+  }
+}
+
+fieldset {
+  padding: 5px 0;
+  legend {
+    margin-left: 10px;
+  }
+}

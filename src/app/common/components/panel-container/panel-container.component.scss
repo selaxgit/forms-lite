@@ -1,0 +1,39 @@
+@use "colors";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  background-color: colors.$white;
+  box-sizing: border-box;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid colors.$gray-200;
+  padding: 5px 10px;
+  box-sizing: border-box;
+}
+
+.head-title {
+  flex: auto;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.content {
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border-top: 1px solid colors.$gray-200;
+  padding: 10px;
+  box-sizing: border-box;
+}

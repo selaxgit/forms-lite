@@ -1,0 +1,10 @@
+:host {
+  display: flex;
+}
+
+ui-element {
+  margin-left: 16px;
+  &:first-child {
+    margin-left: 0;
+  }
+}

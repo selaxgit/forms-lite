@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 650px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-height: 350px;
+  padding: 10px;
+}
