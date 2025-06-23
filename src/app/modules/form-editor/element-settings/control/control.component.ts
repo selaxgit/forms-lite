@@ -6,8 +6,8 @@ import {
   JSTCheckboxModule,
   JSTDatepickerModule,
   JSTInputModule,
+  JSTInputNumberModule,
   JSTSelectModule,
-  JSTTouchspinModule,
 } from '@jst/ui';
 
 import { FLControlSubTypeEnum, FLControlTypeEnum, FLTextMaskEnum, IFLElement } from '../../../../common/interfaces';
@@ -24,7 +24,7 @@ import { FETrueFalseCondComponent } from '../true-false-cond/true-false-cond.com
     JSTInputModule,
     JSTCheckboxModule,
     JSTSelectModule,
-    JSTTouchspinModule,
+    JSTInputNumberModule,
     JSTDatepickerModule,
     FETrueFalseCondComponent,
     FEInputDataSourceComponent,

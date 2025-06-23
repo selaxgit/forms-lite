@@ -60,7 +60,7 @@
         [disabledState]="!element.controlProperties.usePrefix"
         [(value)]="element.controlProperties.prefixIcon"
       >
-        <ng-container JSTIconSuffix>
+        <ng-container JSTSuffix>
           <a href="https://fonts.google.com/icons" target="=_blank">
             <mat-icon>open_in_new</mat-icon>
           </a>
@@ -89,7 +89,7 @@
         [disabledState]="!element.controlProperties.useSuffix"
         [(value)]="element.controlProperties.suffixIcon"
       >
-        <ng-container JSTIconSuffix>
+        <ng-container JSTSuffix>
           <a href="https://fonts.google.com/icons" target="=_blank">
             <mat-icon>open_in_new</mat-icon>
           </a>
@@ -135,25 +135,25 @@
     @case (controlTypeEnum.Number) {
       <div class="mt-10 flex-row-align-center">
         <div class="minmax-container">
-          <jst-touchspin
+          <jst-input-number
             class="mat-without-hint"
             label="Минимальное значение"
             [(value)]="element.controlProperties.min"
-          ></jst-touchspin>
+          ></jst-input-number>
         </div>
         <div class="minmax-container ml-10">
-          <jst-touchspin
+          <jst-input-number
             class="mat-without-hint"
             label="Максимальное значение"
             [(value)]="element.controlProperties.max"
-          ></jst-touchspin>
+          ></jst-input-number>
         </div>
         <div class="step-container ml-10">
-          <jst-touchspin
+          <jst-input-number
             class="mat-without-hint"
             label="Шаг"
             [(value)]="element.controlProperties.step"
-          ></jst-touchspin>
+          ></jst-input-number>
         </div>
       </div>
       <div class="mt-10 flex-row-align-center">
@@ -161,12 +161,12 @@
           <jst-checkbox label="Дробное значение" [(value)]="element.controlProperties.allowDecimals"></jst-checkbox>
         </div>
         <div class="decimal-container ml-10">
-          <jst-touchspin
+          <jst-input-number
             class="mat-without-hint"
             label="Кол-во чисел после запятой"
             [disabledState]="!element.controlProperties.allowDecimals"
             [(value)]="element.controlProperties.step"
-          ></jst-touchspin>
+          ></jst-input-number>
         </div>
       </div>
     }

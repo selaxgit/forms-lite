@@ -49,9 +49,9 @@ export class InputBindDtoComponent {
   }
 
   onChooseDto(): void {
-    this.dtoStore.dtoList$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((availableDto: IUFDto[]) => {
+    this.dtoStore.dtoList$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((dtoList: IUFDto[]) => {
       this.jstDialogService
-        .showModal<string | null, IChoiceDtoData>('Выбор DTO', ChoiceDtoComponent, { availableDto }, true)
+        .showModal<string | null, IChoiceDtoData>('Выбор DTO', ChoiceDtoComponent, { dtoList }, true)
         .subscribe((value: string | null) => {
           if (value) {
             this.bindDTO.set(value);

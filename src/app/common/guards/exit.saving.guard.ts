@@ -1,5 +1,5 @@
 import { inject } from '@angular/core';
-import { JSTDialogService } from '@jst/ui';
+import { JSTConfirmAlignButtonsEnum, JSTDialogService } from '@jst/ui';
 import { Observable, of, switchMap } from 'rxjs';
 
 import { CurrentFormStore } from '../../stores/current-form.store';
@@ -31,7 +31,7 @@ export const exitSavingGuard = (): Observable<boolean> => {
           value: 3,
         },
       ],
-      'Vertical',
+      JSTConfirmAlignButtonsEnum.Vertical,
     )
     .pipe(
       switchMap((button: number) => {
