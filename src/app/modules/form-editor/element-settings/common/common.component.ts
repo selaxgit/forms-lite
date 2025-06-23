@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { IJSTSelectItem, JSTCheckboxModule, JSTInputModule, JSTSelectModule, JSTTouchspinModule } from '@jst/ui';
+import { IJSTSelectItem, JSTCheckboxModule, JSTInputModule, JSTInputNumberModule, JSTSelectModule } from '@jst/ui';
 
 import { FLElementTypeEnum, IFLElement, WidthUnitEnum } from '../../../../common/interfaces';
 import { FETrueFalseCondComponent } from '../true-false-cond/true-false-cond.component';
@@ -15,7 +15,7 @@ import { FETrueFalseCondComponent } from '../true-false-cond/true-false-cond.com
     JSTInputModule,
     JSTCheckboxModule,
     JSTSelectModule,
-    JSTTouchspinModule,
+    JSTInputNumberModule,
     FETrueFalseCondComponent,
   ],
   templateUrl: './common.component.html',

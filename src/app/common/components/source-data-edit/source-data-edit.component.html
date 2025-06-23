@@ -23,11 +23,7 @@
           (valueChange)="setAvaialbleSource($event)"
         ></jst-select>
       } @else {
-        <jst-input
-          label="Наименование источника данных"
-          [controlRequred]="true"
-          [formControl]="controlName"
-        ></jst-input>
+        <jst-input label="Наименование источника данных" [requiredState]="true" [formControl]="controlName"></jst-input>
       }
     </div>
     <button

@@ -1,5 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  ViewChild,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogRef } from '@angular/material/dialog';
 import JSONEditor from 'jsoneditor';
@@ -11,9 +19,9 @@ import JSONEditor from 'jsoneditor';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PopupDtoComponent implements AfterViewInit, OnDestroy {
-  dialogRef!: MatDialogRef<PopupDtoComponent>;
+  @Input() json: any = {};
 
-  private json: any = {};
+  dialogRef!: MatDialogRef<PopupDtoComponent>;
 
   private jsonEditor: JSONEditor | null = null;
 

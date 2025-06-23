@@ -3,7 +3,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { JSTCheckboxModule, JSTDatepickerModule, JSTInputModule, JSTSelectModule, JSTTouchspinModule } from '@jst/ui';
+import { JSTCheckboxModule, JSTDatepickerModule, JSTInputModule, JSTInputNumberModule, JSTSelectModule } from '@jst/ui';
 
 import { UIControlComponent } from './control/control.component';
 import { UIElementComponent } from './element/element.component';
@@ -30,7 +30,7 @@ import { UITabsComponent } from './tabs/tabs.component';
     JSTCheckboxModule,
     JSTDatepickerModule,
     JSTSelectModule,
-    JSTTouchspinModule,
+    JSTInputNumberModule,
   ],
   exports: [UIRowsComponent, UIRowComponent, UIElementComponent, UIPanelComponent, UITabsComponent, UIControlComponent],
 })

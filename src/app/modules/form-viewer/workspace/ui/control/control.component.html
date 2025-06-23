@@ -2,14 +2,14 @@
   @case (controlTypeEnum.Checkbox) {
     <jst-checkbox [label]="elementInfo.label" [formControl]="$any(controlElement?.control)">
       @if (elementInfo.controlProperties?.usePrefix) {
-        <ng-container JSTIconPrefix>
+        <ng-container JSTPrefix>
           <mat-icon [matTooltip]="elementInfo.controlProperties?.prefixHint ?? null">{{
             elementInfo.controlProperties?.prefixIcon
           }}</mat-icon>
         </ng-container>
       }
       @if (elementInfo.controlProperties?.useSuffix) {
-        <ng-container JSTIconSuffix>
+        <ng-container JSTSuffix>
           <mat-icon [matTooltip]="elementInfo.controlProperties?.suffixHint ?? null">{{
             elementInfo.controlProperties?.suffixIcon
           }}</mat-icon>
@@ -24,14 +24,14 @@
       [formControl]="$any(controlElement?.control)"
     >
       @if (elementInfo.controlProperties?.usePrefix) {
-        <ng-container JSTIconPrefix>
+        <ng-container JSTPrefix>
           <mat-icon [matTooltip]="elementInfo.controlProperties?.prefixHint ?? null">{{
             elementInfo.controlProperties?.prefixIcon
           }}</mat-icon>
         </ng-container>
       }
       @if (elementInfo.controlProperties?.useSuffix) {
-        <ng-container JSTIconSuffix>
+        <ng-container JSTSuffix>
           <mat-icon [matTooltip]="elementInfo.controlProperties?.suffixHint ?? null">{{
             elementInfo.controlProperties?.suffixIcon
           }}</mat-icon>
@@ -47,14 +47,14 @@
       [options]="$any(controlElement?.dataSourceList() ?? [])"
     >
       @if (elementInfo.controlProperties?.usePrefix) {
-        <ng-container JSTIconPrefix>
+        <ng-container JSTPrefix>
           <mat-icon [matTooltip]="elementInfo.controlProperties?.prefixHint ?? null">{{
             elementInfo.controlProperties?.prefixIcon
           }}</mat-icon>
         </ng-container>
       }
       @if (elementInfo.controlProperties?.useSuffix) {
-        <ng-container JSTIconSuffix>
+        <ng-container JSTSuffix>
           <mat-icon [matTooltip]="elementInfo.controlProperties?.suffixHint ?? null">{{
             elementInfo.controlProperties?.suffixIcon
           }}</mat-icon>
@@ -63,43 +63,43 @@
     </jst-select>
   }
   @case (controlTypeEnum.Number) {
-    <jst-touchspin
+    <jst-input-number
       [label]="elementInfo.label"
       [clearButton]="elementInfo.controlProperties?.clearButton ?? false"
       [formControl]="$any(controlElement?.control)"
     >
       @if (elementInfo.controlProperties?.usePrefix) {
-        <ng-container JSTIconPrefix>
+        <ng-container JSTPrefix>
           <mat-icon [matTooltip]="elementInfo.controlProperties?.prefixHint ?? null">{{
             elementInfo.controlProperties?.prefixIcon
           }}</mat-icon>
         </ng-container>
       }
       @if (elementInfo.controlProperties?.useSuffix) {
-        <ng-container JSTIconSuffix>
+        <ng-container JSTSuffix>
           <mat-icon [matTooltip]="elementInfo.controlProperties?.suffixHint ?? null">{{
             elementInfo.controlProperties?.suffixIcon
           }}</mat-icon>
         </ng-container>
       }
-    </jst-touchspin>
+    </jst-input-number>
   }
   @case (controlTypeEnum.Text) {
     <jst-input
       [label]="elementInfo.label"
       [clearButton]="elementInfo.controlProperties?.clearButton ?? false"
-      [textarea]="elementInfo.controlProperties?.controlSubType === controlSubTypeEnum.Textarea"
+      [asTextarea]="elementInfo.controlProperties?.controlSubType === controlSubTypeEnum.Textarea"
       [formControl]="$any(controlElement?.control)"
     >
       @if (elementInfo.controlProperties?.usePrefix) {
-        <ng-container JSTIconPrefix>
+        <ng-container JSTPrefix>
           <mat-icon [matTooltip]="elementInfo.controlProperties?.prefixHint ?? null">{{
             elementInfo.controlProperties?.prefixIcon
           }}</mat-icon>
         </ng-container>
       }
       @if (elementInfo.controlProperties?.useSuffix) {
-        <ng-container JSTIconSuffix>
+        <ng-container JSTSuffix>
           <mat-icon [matTooltip]="elementInfo.controlProperties?.suffixHint ?? null">{{
             elementInfo.controlProperties?.suffixIcon
           }}</mat-icon>

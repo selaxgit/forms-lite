@@ -19,12 +19,12 @@
       <jst-checkbox label="Все свободное пространство" [(value)]="element.autofill"></jst-checkbox>
     </div>
     <div class="width-container">
-      <jst-touchspin
+      <jst-input-number
         class="mat-without-hint"
         label="Ширина"
         [disabledState]="element.autofill"
         [(value)]="element.width"
-      ></jst-touchspin>
+      ></jst-input-number>
     </div>
     <div class="unit-container">
       <jst-select

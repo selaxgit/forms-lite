@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ChangeDetectionStrategy, Component, inject, signal, WritableSignal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input, OnInit, signal, WritableSignal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogRef } from '@angular/material/dialog';
 
@@ -9,7 +9,7 @@ import { SessionStorageService } from '../../../../../common/services/storage.se
 
 const LAST_DTO_STORE_KEY = 'fl:last-dto-store';
 export interface IChoiceDtoData {
-  availableDto: IUFDto[];
+  dtoList: IUFDto[];
 }
 
 interface IAvailableDto {
@@ -24,10 +24,12 @@ interface IAvailableDto {
   styleUrl: './choice-dto.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChoiceDtoComponent {
-  dialogRef!: MatDialogRef<ChoiceDtoComponent>;
+export class ChoiceDtoComponent implements OnInit {
+  @Input() dtoList: IUFDto[] = [];
 
   availableDto: IAvailableDto[] = [];
+
+  dialogRef!: MatDialogRef<ChoiceDtoComponent>;
 
   readonly availableProps: WritableSignal<string[]> = signal([]);
 
@@ -39,6 +41,17 @@ export class ChoiceDtoComponent {
 
   private readonly sessionStorageService = inject(SessionStorageService);
 
+  ngOnInit(): void {
+    this.setLists(this.dtoList);
+    const lastDtoId = this.sessionStorageService.get<number>(LAST_DTO_STORE_KEY);
+    if (lastDtoId !== null) {
+      const dto = this.availableDto.find((item: IAvailableDto) => item.id === lastDtoId);
+      if (dto) {
+        this.onChooseDto(dto);
+      }
+    }
+  }
+
   onChooseProp(prop: string): void {
     this.currentProp.set(prop);
     this.currentChoice.set(`${this.currentDto()?.name}: ${prop}`);
@@ -48,19 +61,6 @@ export class ChoiceDtoComponent {
     this.currentDto.set(dto);
     this.availableProps.set(dto.props);
     this.sessionStorageService.set(LAST_DTO_STORE_KEY, dto.id);
-  }
-
-  setData(data: IChoiceDtoData): void {
-    if (data?.availableDto) {
-      this.setLists(data.availableDto);
-      const lastDtoId = this.sessionStorageService.get<number>(LAST_DTO_STORE_KEY);
-      if (lastDtoId !== null) {
-        const dto = this.availableDto.find((item: IAvailableDto) => item.id === lastDtoId);
-        if (dto) {
-          this.onChooseDto(dto);
-        }
-      }
-    }
   }
 
   onApply(): void {

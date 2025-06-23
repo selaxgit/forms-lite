@@ -38,7 +38,7 @@
     "@angular/platform-browser": "^20.0.3",
     "@angular/platform-browser-dynamic": "^20.0.3",
     "@angular/router": "^20.0.3",
-    "@jst/ui": "file:jst-ui-0.0.32.tgz",
+    "@jst/ui": "file:jst-ui-0.1.1.tgz",
     "@ngrx/component-store": "^19.2.1",
     "jsoneditor": "^10.2.0",
     "jszip": "^3.10.1",
